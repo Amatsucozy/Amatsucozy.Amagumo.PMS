@@ -1,7 +1,9 @@
-﻿using Amatsucozy.Amagumo.System.Infrastructure;
+﻿using Amatsucozy.Amagumo.System.API.Authorization;
+using Amatsucozy.Amagumo.System.Infrastructure;
 using Amatsucozy.Amagumo.System.Infrastructure.Models;
 using Amatsucozy.Amagumo.System.Infrastructure.Repositories;
 using Amatsucozy.PMS.Shared.API.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Amatsucozy.Amagumo.System.API.Controllers;
@@ -18,6 +20,7 @@ public sealed class UsersController : SecuredController
     }
 
     [HttpGet]
+    [Authorize(nameof(ScopesEnum.Admin))]
     public IActionResult Get()
     {
         return _userRepository.Find("auth0|id")
