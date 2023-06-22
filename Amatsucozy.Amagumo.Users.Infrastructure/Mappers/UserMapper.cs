@@ -4,7 +4,7 @@ using Riok.Mapperly.Abstractions;
 
 namespace Amatsucozy.Amagumo.Users.Infrastructure.Mappers;
 
-[Mapper(UseDeepCloning = true)]
+[Mapper]
 public partial class UserMapper : IMappingProfile<User<UserModel>, UserModel>
 {
     public partial UserModel ToDbModel(User<UserModel> domainModel);

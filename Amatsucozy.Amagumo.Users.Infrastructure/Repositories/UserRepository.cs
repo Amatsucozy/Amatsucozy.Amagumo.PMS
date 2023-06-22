@@ -9,9 +9,9 @@ namespace Amatsucozy.Amagumo.Users.Infrastructure.Repositories;
 public sealed class UserRepository : IUserRepository
 {
     private readonly UsersDbContext _context;
-    private readonly UserMapper _mapper;
+    private readonly IMappingProfile<User<UserModel>, UserModel> _mapper;
 
-    public UserRepository(UsersDbContext context, UserMapper mapper)
+    public UserRepository(UsersDbContext context, IMappingProfile<User<UserModel>, UserModel> mapper)
     {
         _context = context;
         _mapper = mapper;

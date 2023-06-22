@@ -11,6 +11,8 @@ public sealed class UsersDbContext : DbContext
 
     public DbSet<UserModel> Users { get; set; } = default!;
 
+    public DbSet<OrganisationModel> Organisations { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
