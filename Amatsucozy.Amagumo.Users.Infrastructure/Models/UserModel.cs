@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Amatsucozy.Amagumo.Users.Infrastructure.Models;
 
-public sealed class UserModel : IPostgresEntity<string>
+public sealed class UserModel : IEntityModel<string, uint>
 {
     [Key]
     public required string Id { get; set; }
@@ -14,6 +14,7 @@ public sealed class UserModel : IPostgresEntity<string>
 
     public DateTimeOffset UpdatedAt { get; set; }
 
+    [Timestamp]
     public uint RowVersion { get; set; }
 
     public required string Email { get; set; }

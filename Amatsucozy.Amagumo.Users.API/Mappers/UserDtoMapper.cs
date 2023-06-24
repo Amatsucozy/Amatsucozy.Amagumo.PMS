@@ -1,18 +1,18 @@
 ﻿using Amatsucozy.Amagumo.Users.Contracts;
 using Amatsucozy.Amagumo.Users.Core;
-using Amatsucozy.Amagumo.Users.Infrastructure.Models;
+using Amatsucozy.PMS.Shared.Infrastructure.Mappers;
 using Riok.Mapperly.Abstractions;
 
 namespace Amatsucozy.Amagumo.Users.API.Mappers;
 
 [Mapper]
-public partial class UserDtoMapper : IMappingProfile<User<UserModel>, UserDto>
+public partial class UserDtoMapper : IMapper<User, UserDto>
 {
-    public partial UserDto ToDto(User<UserModel> domainModel);
+    public partial UserDto Map(User model);
 
-    public partial User<UserModel> ToDomainModel(UserDto dto);
+    public partial void Map(User model1, UserDto model2);
 
-    public partial void ToDto(User<UserModel> domainModel, UserDto dto);
+    public partial User Map(UserDto model);
 
-    public partial void ToDomainModel(UserDto dto, User<UserModel> domainModel);
+    public partial void Map(UserDto model2, User model1);
 }

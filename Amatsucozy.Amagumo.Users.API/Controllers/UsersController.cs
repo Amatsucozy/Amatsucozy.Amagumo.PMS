@@ -1,10 +1,9 @@
-﻿using Amatsucozy.Amagumo.Users.API.Mappers;
-using Amatsucozy.Amagumo.Users.Contracts;
+﻿using Amatsucozy.Amagumo.Users.Contracts;
 using Amatsucozy.Amagumo.Users.Core;
-using Amatsucozy.Amagumo.Users.Infrastructure.Models;
 using Amatsucozy.Amagumo.Users.Infrastructure.Repositories;
 using Amatsucozy.PMS.Shared.API.Authorization;
 using Amatsucozy.PMS.Shared.API.Controllers;
+using Amatsucozy.PMS.Shared.Infrastructure.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +13,12 @@ public sealed class UsersController : SecuredController
 {
     private readonly IUserRepository _userRepository;
     private readonly IAuthenticatedUserProvider _authenticatedUserProvider;
-    private readonly IMappingProfile<User<UserModel>, UserDto> _userDtoMapper;
+    private readonly IMapper<User, UserDto> _userDtoMapper;
 
     public UsersController(
         IUserRepository userRepository,
         IAuthenticatedUserProvider authenticatedUserProvider,
-        IMappingProfile<User<UserModel>, UserDto> userDtoMapper)
+        IMapper<User, UserDto> userDtoMapper)
     {
         _userRepository = userRepository;
         _authenticatedUserProvider = authenticatedUserProvider;
@@ -32,7 +31,7 @@ public sealed class UsersController : SecuredController
     {
         return _userRepository.Find(_authenticatedUserProvider.User.Id)
             .ConvertTo<IActionResult>(
-                user => Ok(_userDtoMapper.ToDto(user)),
+                user => Ok(_userDtoMapper.Map(user)),
                 error => NotFound(error.Message)
             );
     }
@@ -43,7 +42,7 @@ public sealed class UsersController : SecuredController
     {
         userDto.Id ??= _authenticatedUserProvider.User.Id;
         
-        return _userRepository.Save(_userDtoMapper.ToDomainModel(userDto))
+        return _userRepository.Save(_userDtoMapper.Map(userDto))
             .ConvertTo<IActionResult>(
                 _ => Ok(),
                 error => BadRequest(error.Message)

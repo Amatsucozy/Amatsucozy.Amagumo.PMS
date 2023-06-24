@@ -2,10 +2,13 @@
 
 namespace Amatsucozy.Amagumo.Users.Core;
 
-public sealed class User<TEntity> : IEntityDomain<string, uint, TEntity>
-    where TEntity : IPostgresEntity<string>
+public sealed class User : IEntityDomain<string>
 {
     public required string Id { get; set; }
+
+    public DateTimeOffset CreatedAt { get; set; }
+
+    public DateTimeOffset UpdatedAt { get; set; }
 
     public required string Email { get; set; }
 

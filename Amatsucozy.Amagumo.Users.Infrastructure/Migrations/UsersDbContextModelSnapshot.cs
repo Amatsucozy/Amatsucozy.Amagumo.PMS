@@ -23,38 +23,6 @@ namespace Amatsucozy.Amagumo.Users.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Amatsucozy.Amagumo.Users.Infrastructure.Models.OrganisationModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ApiTokenKey")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ApiTokenName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("RowVersion")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Organisations", "system");
-                });
-
             modelBuilder.Entity("Amatsucozy.Amagumo.Users.Infrastructure.Models.UserModel", b =>
                 {
                     b.Property<string>("Id")
@@ -75,8 +43,11 @@ namespace Amatsucozy.Amagumo.Users.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("RowVersion")
-                        .HasColumnType("bigint");
+                    b.Property<uint>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("xid")
+                        .HasColumnName("xmin");
 
                     b.Property<DateTimeOffset>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
