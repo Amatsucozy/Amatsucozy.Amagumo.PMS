@@ -17,18 +17,6 @@ public sealed class UserRepository : IUserRepository
         _mapper = mapper;
     }
 
-    public Result<User> Find(Guid id)
-    {
-        var userDbModel = _context.Users.Find(id);
-
-        if (userDbModel is null)
-        {
-            return new UserNotFoundException($"User with id {id} not found");
-        }
-
-        return _mapper.Map(userDbModel);
-    }
-
     public Result<bool> Save(User entity)
     {
         var userDbModel = _context.Users.Find(entity.Id);
