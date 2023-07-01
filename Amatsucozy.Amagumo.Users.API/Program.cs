@@ -68,6 +68,11 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString(nameof(ConnectionStrings.Redis));
+    options.InstanceName = nameof(ConnectionStrings.Redis);
+});
 
 builder.Services.AddApiDependencies();
 

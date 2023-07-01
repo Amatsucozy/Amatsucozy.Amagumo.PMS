@@ -12,6 +12,7 @@
         <PackageReference Include="Amatsucozy.PMS.Shared.API" Version="1.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.7" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.7" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.7" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="Riok.Mapperly" Version="2.8.0" />
     </ItemGroup>
