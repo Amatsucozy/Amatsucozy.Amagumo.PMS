@@ -1,23 +1,24 @@
 ﻿using Amatsucozy.Amagumo.PMS.Core;
-using Amatsucozy.Amagumo.PMS.Core.Exceptions;
-using Amatsucozy.Amagumo.PMS.Infrastructure.Models;
+using Amatsucozy.Amagumo.PMS.Core.User;
+using Amatsucozy.Amagumo.PMS.Core.User.Exceptions;
+using Amatsucozy.Amagumo.PMS.Infrastructure.User.Models;
 using Amatsucozy.PMS.Shared.Core.Results;
 using Amatsucozy.PMS.Shared.Infrastructure.Mappers;
 
-namespace Amatsucozy.Amagumo.PMS.Infrastructure.Repositories;
+namespace Amatsucozy.Amagumo.PMS.Infrastructure.User.Repositories;
 
 public sealed class UserRepository : IUserRepository
 {
-    private readonly UsersDbContext _context;
-    private readonly IMapper<User, UserModel> _mapper;
+    private readonly UserDbContext _context;
+    private readonly IMapper<UserDomain, UserModel> _mapper;
 
-    public UserRepository(UsersDbContext context, IMapper<User, UserModel> mapper)
+    public UserRepository(UserDbContext context, IMapper<UserDomain, UserModel> mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public Result<bool> Save(User entity)
+    public Result<bool> Save(UserDomain entity)
     {
         var userDbModel = _context.Users.Find(entity.Id);
 
@@ -36,7 +37,7 @@ public sealed class UserRepository : IUserRepository
         return true;
     }
 
-    public Result<User> Find(string id)
+    public Result<UserDomain> Find(string id)
     {
         var userDbModel = _context.Users.Find(id);
 

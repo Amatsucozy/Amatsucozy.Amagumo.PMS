@@ -1,7 +1,9 @@
 ﻿using Amatsucozy.Amagumo.PMS.Core;
-using Amatsucozy.Amagumo.PMS.Infrastructure.Mappers;
-using Amatsucozy.Amagumo.PMS.Infrastructure.Models;
-using Amatsucozy.Amagumo.PMS.Infrastructure.Repositories;
+using Amatsucozy.Amagumo.PMS.Core.User;
+using Amatsucozy.Amagumo.PMS.Infrastructure.User;
+using Amatsucozy.Amagumo.PMS.Infrastructure.User.Mappers;
+using Amatsucozy.Amagumo.PMS.Infrastructure.User.Models;
+using Amatsucozy.Amagumo.PMS.Infrastructure.User.Repositories;
 using Amatsucozy.PMS.Shared.Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +16,10 @@ public static class InfrastructureInjector
     {
         ArgumentException.ThrowIfNullOrEmpty(connectionString, nameof(connectionString));
 
-        serviceCollection.AddDbContext<UsersDbContext>(optionsBuilder => optionsBuilder.UseNpgsql(connectionString));
+        serviceCollection.AddDbContext<UserDbContext>(optionsBuilder => optionsBuilder.UseNpgsql(connectionString));
 
         serviceCollection.AddScoped<IUserRepository, UserRepository>();
 
-        serviceCollection.AddSingleton<IMapper<User, UserModel>, UserMapper>();
+        serviceCollection.AddSingleton<IMapper<UserDomain, UserModel>, UserMapper>();
     }
 }

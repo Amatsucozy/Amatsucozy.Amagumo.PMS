@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Amatsucozy.Amagumo.PMS.Contracts;
+namespace Amatsucozy.Amagumo.PMS.Contracts.User;
 
 public sealed class UserDto
 {

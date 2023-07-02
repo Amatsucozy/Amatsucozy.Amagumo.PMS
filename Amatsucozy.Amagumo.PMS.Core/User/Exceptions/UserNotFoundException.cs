@@ -1,4 +1,4 @@
-﻿namespace Amatsucozy.Amagumo.PMS.Core.Exceptions;
+﻿namespace Amatsucozy.Amagumo.PMS.Core.User.Exceptions;
 
 public sealed class UserNotFoundException : Exception
 {

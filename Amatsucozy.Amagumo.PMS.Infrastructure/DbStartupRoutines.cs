@@ -1,3 +1,4 @@
+using Amatsucozy.Amagumo.PMS.Infrastructure.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,7 @@ public static class DbStartupRoutines
     public static void DbStart(this IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
-        using var dbContext = scope.ServiceProvider.GetRequiredService<UsersDbContext>();
+        using var dbContext = scope.ServiceProvider.GetRequiredService<UserDbContext>();
 
         if (dbContext.Database.GetPendingMigrations().Any())
         {

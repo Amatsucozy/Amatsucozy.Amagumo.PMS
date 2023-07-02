@@ -1,8 +1,8 @@
 ﻿using Amatsucozy.PMS.Shared.Core.Modelling;
 
-namespace Amatsucozy.Amagumo.PMS.Core;
+namespace Amatsucozy.Amagumo.PMS.Core.User;
 
-public sealed class User : IEntityDomain<string>
+public sealed class UserDomain : IEntityDomain<string>
 {
     public required string Id { get; set; }
 

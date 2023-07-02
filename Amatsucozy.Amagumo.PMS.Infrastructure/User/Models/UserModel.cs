@@ -3,7 +3,7 @@ using Amatsucozy.PMS.Shared.Core.Modelling;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Amatsucozy.Amagumo.PMS.Infrastructure.Models;
+namespace Amatsucozy.Amagumo.PMS.Infrastructure.User.Models;
 
 public sealed class UserModel : IEntityModel<string, uint>
 {
@@ -28,6 +28,6 @@ internal sealed class UserModelConfig : IEntityTypeConfiguration<UserModel>
 {
     public void Configure(EntityTypeBuilder<UserModel> builder)
     {
-        builder.ToTable(nameof(UsersDbContext.Users));
+        builder.ToTable(nameof(UserDbContext.Users));
     }
 }

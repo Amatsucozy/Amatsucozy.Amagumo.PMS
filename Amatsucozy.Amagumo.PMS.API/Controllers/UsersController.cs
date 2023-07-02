@@ -1,6 +1,8 @@
 ﻿using Amatsucozy.Amagumo.PMS.Contracts;
+using Amatsucozy.Amagumo.PMS.Contracts.User;
 using Amatsucozy.Amagumo.PMS.Core;
-using Amatsucozy.Amagumo.PMS.Infrastructure.Repositories;
+using Amatsucozy.Amagumo.PMS.Core.User;
+using Amatsucozy.Amagumo.PMS.Infrastructure.User.Repositories;
 using Amatsucozy.PMS.Shared.API.Authorization;
 using Amatsucozy.PMS.Shared.API.Controllers;
 using Amatsucozy.PMS.Shared.Infrastructure.Mappers;
@@ -13,12 +15,12 @@ public sealed class UsersController : SecuredController
 {
     private readonly IUserRepository _userRepository;
     private readonly IAuthenticatedUserProvider _authenticatedUserProvider;
-    private readonly IMapper<User, UserDto> _userDtoMapper;
+    private readonly IMapper<UserDomain, UserDto> _userDtoMapper;
 
     public UsersController(
         IUserRepository userRepository,
         IAuthenticatedUserProvider authenticatedUserProvider,
-        IMapper<User, UserDto> userDtoMapper)
+        IMapper<UserDomain, UserDto> userDtoMapper)
     {
         _userRepository = userRepository;
         _authenticatedUserProvider = authenticatedUserProvider;
